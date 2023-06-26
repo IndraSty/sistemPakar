@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "410717750803",
+    "project_id": "sistempakar-k7",
+    "storage_bucket": "sistempakar-k7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410717750803:android:dece2dc6ff23725df0e1e6",
+        "android_client_info": {
+          "package_name": "com.example.sistempakar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410717750803-shuajn7udf555na37c6e573ovqf7kv4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKHopGXxuXlbsrcXnB33N4MTiPgLsNUB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410717750803-shuajn7udf555na37c6e573ovqf7kv4g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
