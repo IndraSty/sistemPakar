@@ -11,7 +11,7 @@ class DiagnosisPage extends StatefulWidget {
 }
 
 class _DiagnosisPageState extends State<DiagnosisPage> {
-  List<String> selectedSymptoms = [];
+  List<String> gejalaDipilih = [];
   String diagnosis = "";
 
 
@@ -19,7 +19,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
     for (Rule rule in rules) {
       bool match = true;
       for (String condition in rule.kondisi!) {
-        if (!selectedSymptoms.contains(condition)) {
+        if (!gejalaDipilih.contains(condition)) {
           match = false;
           break;
         }
@@ -50,13 +50,13 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
               itemBuilder: (context, index) {
                 return CheckboxListTile(
                   title: Text(gejala[index]),
-                  value: selectedSymptoms.contains(gejala[index]),
+                  value: gejalaDipilih.contains(gejala[index]),
                   onChanged: (value) {
                     setState(() {
                   if (value!) {
-                    selectedSymptoms.add(gejala[index]);
+                    gejalaDipilih.add(gejala[index]);
                   } else {
-                    selectedSymptoms.remove(gejala[index]);
+                    gejalaDipilih.remove(gejala[index]);
                   }
                 });
                   },
