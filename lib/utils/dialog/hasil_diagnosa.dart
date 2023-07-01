@@ -172,7 +172,7 @@ class CardDialog extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
                 ),
                 onPressed: () {
-                  diagnosController.diagnosis = '';
+                  diagnosController.hasilDiagnosis = '';
                   Get.back();
                 },
                 child: const Text("Ulang"),

@@ -51,6 +51,7 @@ class DiarePageView extends StatelessWidget {
                       fontSize: 12,
                       color: Colors.black,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(
                     height: 30,
@@ -77,6 +78,7 @@ class DiarePageView extends StatelessWidget {
                       fontSize: 12,
                       color: Colors.black,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(
                     height: 5,
@@ -142,6 +144,7 @@ class DiarePageView extends StatelessWidget {
                       fontSize: 12,
                       color: Colors.black,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                 ],
               );

@@ -5,10 +5,10 @@ import '../../../data/rule.dart';
 
 class DiagnosisController extends GetxController {
   RxList<String> gejalaDipilih = <String>[].obs;
-  String diagnosis = "";
+  String hasilDiagnosis = "";
   double tingkatKemungkinan = 0;
 
-  void forwardChaining() {
+  void diagnosis() {
     double highestMatchPercentage = 0;
     String selectedDiagnosis = "";
 
@@ -28,10 +28,9 @@ class DiagnosisController extends GetxController {
     }
 
     if (highestMatchPercentage > 0) {
-      diagnosis = selectedDiagnosis;
+      hasilDiagnosis = selectedDiagnosis;
     } else {
-      // Tidak ada diagnosis yang cocok dengan gejala yang dipilih
-      diagnosis = "Tidak Diketahui";
+      hasilDiagnosis = "";
     }
     tingkatKemungkinan = highestMatchPercentage * 100;
   }

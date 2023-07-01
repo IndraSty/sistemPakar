@@ -30,7 +30,7 @@ class DiagnosisView extends GetView<DiagnosisController> {
         ),
         backgroundColor: Colors.white,
         centerTitle: true,
-        elevation: 1,
+        elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(
@@ -146,12 +146,12 @@ class DiagnosisView extends GetView<DiagnosisController> {
                   ),
                   Future.delayed(const Duration(seconds: 2), () {
                     Navigator.of(context).pop();
-                    controller.forwardChaining();
-                    if (controller.diagnosis.isNotEmpty) {
+                    controller.diagnosis();
+                    if (controller.hasilDiagnosis.isNotEmpty) {
                       showDialog(
                         context: context,
                         builder: (context) => HasilDiagnosa(
-                          diagnosis: controller.diagnosis,
+                          diagnosis: controller.hasilDiagnosis,
                           percentase:
                               '${controller.tingkatKemungkinan.toStringAsFixed(2)}%',
                         ),

@@ -50,7 +50,7 @@ class _DaftarPenyakitPageViewState extends State<DaftarPenyakitPageView>
         ),
         backgroundColor: Colors.white,
         centerTitle: true,
-        elevation: 1,
+        elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: const Icon(
