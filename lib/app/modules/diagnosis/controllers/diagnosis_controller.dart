@@ -9,7 +9,7 @@ class DiagnosisController extends GetxController {
   double tingkatKemungkinan = 0;
 
   void diagnosis() {
-    double highestMatchPercentage = 0;
+    double highestCF = 0;
     String selectedDiagnosis = "";
 
     for (Rule rule in rules) {
@@ -20,18 +20,52 @@ class DiagnosisController extends GetxController {
         }
       }
 
-      double matchPercentage = matchingConditions / rule.kondisi!.length;
-      if (matchPercentage > highestMatchPercentage) {
-        highestMatchPercentage = matchPercentage;
+       if (matchingConditions == rule.kondisi!.length) {
+      if (rule.cf! > highestCF) {
+        highestCF = rule.cf!;
         selectedDiagnosis = rule.result!;
       }
     }
+  }
+    
 
-    if (highestMatchPercentage > 0) {
+    if (highestCF > 0) {
       hasilDiagnosis = selectedDiagnosis;
     } else {
       hasilDiagnosis = "";
     }
-    tingkatKemungkinan = highestMatchPercentage * 100;
+    tingkatKemungkinan = highestCF * 100;
   }
 }
+
+
+
+// String hasilDiagnosis = "";
+//   double tingkatKemungkinan = 0;
+
+//   void diagnosis() {
+//     double highestMatchPercentage = 0;
+//     String selectedDiagnosis = "";
+
+//     for (Rule rule in rules) {
+//       int matchingConditions = 0;
+//       for (String condition in rule.kondisi!) {
+//         if (gejalaDipilih.contains(condition)) {
+//           matchingConditions++;
+//         }
+//       }
+
+//       double matchPercentage = matchingConditions / rule.kondisi!.length;
+//       if (matchPercentage > highestMatchPercentage) {
+//         highestMatchPercentage = matchPercentage;
+//         selectedDiagnosis = rule.result!;
+//       }
+//     }
+
+//     if (highestMatchPercentage > 0) {
+//       hasilDiagnosis = selectedDiagnosis;
+//     } else {
+//       hasilDiagnosis = "";
+//     }
+//     tingkatKemungkinan = highestMatchPercentage * 100;
+//   }

@@ -11,6 +11,7 @@ class CacinganPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     final DataPenyakit dataPenyakit = daftarPenyakit[0];
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Text(

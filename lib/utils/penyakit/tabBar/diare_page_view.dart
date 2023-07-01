@@ -14,6 +14,7 @@ class DiarePageView extends StatelessWidget {
     final Rule dataPenyakit2 = rules[0];
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: StreamBuilder<DocumentSnapshot>(
             stream: FirebaseFirestore.instance

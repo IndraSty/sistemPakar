@@ -23,14 +23,15 @@ class ProfileView extends GetView<ProfileController> {
         ),
         backgroundColor: Colors.white,
         centerTitle: true,
-        elevation: 1,
         leading: IconButton(
           onPressed: Get.back,
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.black87,
+            size: 18,
           ),
         ),
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

@@ -51,6 +51,8 @@ class MyApp extends StatelessWidget {
                   () => GetMaterialApp(
                     debugShowCheckedModeBanner: false,
                     title: 'SistemPakar',
+                    theme: ThemeData(
+                    ),
                     initialRoute:
                         authCtrl.isAuth.isTrue ? Routes.HOME : Routes.LOGIN,
                     getPages: AppPages.routes,

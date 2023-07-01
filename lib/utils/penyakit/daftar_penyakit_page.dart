@@ -56,10 +56,11 @@ class _DaftarPenyakitPageViewState extends State<DaftarPenyakitPageView>
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.black87,
-            size: 20,
+            size: 18,
           ),
         ),
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -125,19 +126,12 @@ class _DaftarPenyakitPageViewState extends State<DaftarPenyakitPageView>
       bottomNavigationBar: Container(
         height: 84,
         width: width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              offset: const Offset(0, -1),
-              blurRadius: 2,
-              spreadRadius: 0,
-            ),
-          ],
+         
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),

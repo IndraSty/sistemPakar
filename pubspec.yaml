@@ -17,6 +17,7 @@ dependencies:
   cloud_firestore: ^4.6.0
   get_storage: ^2.1.1
   fluttertoast: ^8.2.1
+  flutter_svg: ^2.0.5
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

@@ -36,10 +36,11 @@ class DiagnosisView extends GetView<DiagnosisController> {
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.black87,
-            size: 20,
+            size: 18,
           ),
         ),
       ),
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           const SizedBox(height: 16),
@@ -113,21 +114,14 @@ class DiagnosisView extends GetView<DiagnosisController> {
         ],
       ),
       bottomNavigationBar: Container(
-        height: 84,
+        height: 80,
         width: Get.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              offset: const Offset(0, -1),
-              blurRadius: 2,
-              spreadRadius: 0,
-            ),
-          ],
+         
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
