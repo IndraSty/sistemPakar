@@ -152,6 +152,8 @@ class DiagnosisView extends GetView<DiagnosisController> {
                         context: context,
                         builder: (context) => HasilDiagnosa(
                           diagnosis: controller.diagnosis,
+                          percentase:
+                              '${controller.tingkatKemungkinan.toStringAsFixed(2)}%',
                         ),
                       );
                     } else {

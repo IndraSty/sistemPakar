@@ -6,38 +6,33 @@ import '../../../data/rule.dart';
 class DiagnosisController extends GetxController {
   RxList<String> gejalaDipilih = <String>[].obs;
   String diagnosis = "";
-
-  void toggleGejala(String gejala, bool? value) {
-    if (value!) {
-      gejalaDipilih.add(gejala);
-    } else {
-      gejalaDipilih.remove(gejala);
-    }
-  }
+  double tingkatKemungkinan = 0;
 
   void forwardChaining() {
-  double highestMatchPercentage = 0;
-  String selectedDiagnosis = "";
+    double highestMatchPercentage = 0;
+    String selectedDiagnosis = "";
 
-  for (Rule rule in rules) {
-    int matchingConditions = 0;
-    for (String condition in rule.kondisi!) {
-      if (gejalaDipilih.contains(condition)) {
-        matchingConditions++;
+    for (Rule rule in rules) {
+      int matchingConditions = 0;
+      for (String condition in rule.kondisi!) {
+        if (gejalaDipilih.contains(condition)) {
+          matchingConditions++;
+        }
+      }
+
+      double matchPercentage = matchingConditions / rule.kondisi!.length;
+      if (matchPercentage > highestMatchPercentage) {
+        highestMatchPercentage = matchPercentage;
+        selectedDiagnosis = rule.result!;
       }
     }
 
-    double matchPercentage = matchingConditions / rule.kondisi!.length;
-    if (matchPercentage > highestMatchPercentage) {
-      highestMatchPercentage = matchPercentage;
-      selectedDiagnosis = rule.result!;
+    if (highestMatchPercentage > 0) {
+      diagnosis = selectedDiagnosis;
+    } else {
+      // Tidak ada diagnosis yang cocok dengan gejala yang dipilih
+      diagnosis = "Tidak Diketahui";
     }
+    tingkatKemungkinan = highestMatchPercentage * 100;
   }
-
-  if (highestMatchPercentage > 0) {
-    diagnosis = selectedDiagnosis;
-  } else {
-    diagnosis = '' ;
-  }
-}
 }

@@ -8,9 +8,10 @@ import '../../app/routes/app_pages.dart';
 import '../../constant.dart';
 
 class HasilDiagnosa extends StatelessWidget {
-  const HasilDiagnosa({super.key, required this.diagnosis});
+  const HasilDiagnosa(
+      {super.key, required this.diagnosis, required this.percentase});
   final String diagnosis;
-
+  final String percentase;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class HasilDiagnosa extends StatelessWidget {
         children: [
           CardDialog(
             diagnosis: diagnosis,
+            percentase: percentase,
           ),
         ],
       ),
@@ -31,8 +33,10 @@ class CardDialog extends StatelessWidget {
   CardDialog({
     super.key,
     required this.diagnosis,
+    required this.percentase,
   });
   late String diagnosis;
+  late String percentase;
   final diagnosController = Get.find<DiagnosisController>();
 
   @override
@@ -75,7 +79,7 @@ class CardDialog extends StatelessWidget {
                       "Berdasarkan Gejala yang anda pilih, anak anda mengalami ",
                 ),
                 TextSpan(
-                  text: '$diagnosis.',
+                  text: '$diagnosis. dengan percentase $percentase',
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -100,12 +104,27 @@ class CardDialog extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              if(diagnosis == 'Diare'){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const DaftarPenyakitPageView(initialIndex: 0,)));
-              } else if (diagnosis == 'Asma'){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const DaftarPenyakitPageView(initialIndex: 1,)));
-              } else if (diagnosis == 'Cacingan'){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const DaftarPenyakitPageView(initialIndex: 2,)));
+              if (diagnosis == 'Diare') {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DaftarPenyakitPageView(
+                              initialIndex: 0,
+                            )));
+              } else if (diagnosis == 'Asma') {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DaftarPenyakitPageView(
+                              initialIndex: 1,
+                            )));
+              } else if (diagnosis == 'Cacingan') {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DaftarPenyakitPageView(
+                              initialIndex: 2,
+                            )));
               }
             },
             child: Container(
@@ -142,7 +161,6 @@ class CardDialog extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  
                   Get.offAllNamed(Routes.HOME);
                 },
                 child: const Text('Kembali'),
@@ -150,7 +168,8 @@ class CardDialog extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Constant.primaryColor1,
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
                 ),
                 onPressed: () {
                   diagnosController.diagnosis = '';
