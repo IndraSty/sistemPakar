@@ -7,7 +7,7 @@ class DiagnosisController extends GetxController {
   RxList<String> gejalaDipilih = <String>[].obs;
   String diagnosis = "";
 
-  void toggleSymptom(String gejala, bool? value) {
+  void toggleGejala(String gejala, bool? value) {
     if (value!) {
       gejalaDipilih.add(gejala);
     } else {
