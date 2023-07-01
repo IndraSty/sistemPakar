@@ -16,18 +16,28 @@ class DiagnosisController extends GetxController {
   }
 
   void forwardChaining() {
-    for (Rule rule in rules) {
-      bool match = true;
-      for (String kondisi in rule.kondisi!) {
-        if (!gejalaDipilih.contains(kondisi)) {
-          match = false;
-          break;
-        }
-      }
-      if (match) {
-        diagnosis = rule.result!;
-        break;
+  double highestMatchPercentage = 0;
+  String selectedDiagnosis = "";
+
+  for (Rule rule in rules) {
+    int matchingConditions = 0;
+    for (String condition in rule.kondisi!) {
+      if (gejalaDipilih.contains(condition)) {
+        matchingConditions++;
       }
     }
+
+    double matchPercentage = matchingConditions / rule.kondisi!.length;
+    if (matchPercentage > highestMatchPercentage) {
+      highestMatchPercentage = matchPercentage;
+      selectedDiagnosis = rule.result!;
+    }
   }
+
+  if (highestMatchPercentage > 0) {
+    diagnosis = selectedDiagnosis;
+  } else {
+    diagnosis = '' ;
+  }
+}
 }

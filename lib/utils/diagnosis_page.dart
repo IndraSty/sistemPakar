@@ -16,20 +16,32 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
 
   void forwardChaining() {
-    for (Rule rule in rules) {
-      bool match = true;
-      for (String dataGejala in rule.kondisi!) {
-        if (!gejalaDipilih.contains(dataGejala)) {
-          match = false;
-          break;
-        }
-      }
-      if (match) {
-        diagnosis = rule.result!;
-        break;
+  double highestMatchPercentage = 0;
+  String selectedDiagnosis = "";
+
+  for (Rule rule in rules) {
+    int matchingConditions = 0;
+    for (String condition in rule.kondisi!) {
+      if (gejalaDipilih.contains(condition)) {
+        matchingConditions++;
       }
     }
+
+    double matchPercentage = matchingConditions / rule.kondisi!.length;
+    if (matchPercentage > highestMatchPercentage) {
+      highestMatchPercentage = matchPercentage;
+      selectedDiagnosis = rule.result!;
+    }
   }
+
+  if (highestMatchPercentage > 0) {
+    diagnosis = selectedDiagnosis;
+  } else {
+    // Tidak ada diagnosis yang cocok dengan gejala yang dipilih
+    diagnosis = "Tidak Diketahui";
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
