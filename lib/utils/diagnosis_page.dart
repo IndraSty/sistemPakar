@@ -18,8 +18,8 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
   void forwardChaining() {
     for (Rule rule in rules) {
       bool match = true;
-      for (String condition in rule.kondisi!) {
-        if (!gejalaDipilih.contains(condition)) {
+      for (String dataGejala in rule.kondisi!) {
+        if (!gejalaDipilih.contains(dataGejala)) {
           match = false;
           break;
         }
