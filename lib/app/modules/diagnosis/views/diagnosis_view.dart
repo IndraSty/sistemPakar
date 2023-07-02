@@ -9,6 +9,7 @@ import '../../../../constant.dart';
 import '../../../../utils/dialog/hasil_diagnosa.dart';
 import '../../../../utils/dialog/hasil_not_match.dart';
 import '../../../controllers/auth_controller_controller.dart';
+import '../../../data/cf_user.dart';
 import '../../../data/rule.dart';
 import '../controllers/diagnosis_controller.dart';
 
@@ -73,7 +74,9 @@ class DiagnosisView extends GetView<DiagnosisController> {
                     itemCount: gejala.length,
                     itemBuilder: (context, index) {
                       return Obx(
-                        () => CheckboxListTile(
+                        () => Column(
+                          children: [
+                            CheckboxListTile(
                           title: Text(gejala[index]),
                           value:
                               controller.gejalaDipilih.contains(gejala[index]),
@@ -97,9 +100,41 @@ class DiagnosisView extends GetView<DiagnosisController> {
                             } else {
                               controller.gejalaDipilih.remove(gejala[index]);
                             }
+                            if (controller.gejalaDipilih.value.isNotEmpty) {
+                              Column(
+                                children: [
+                                  RadioListTile(
+                                    title: const Text('Yakin'),
+                                    value: 'Yakin',
+                                    groupValue: controller.selectedCF,
+                                    onChanged: (value) {
+                                      controller.selectedCF = value as RxString;
+                                    },
+                                  ),
+                                  RadioListTile(
+                                    title: const Text('Ragu-ragu'),
+                                    value: 'Ragu-ragu',
+                                    groupValue: controller.selectedCF,
+                                    onChanged: (value) {
+                                      controller.selectedCF = value as RxString;
+                                    },
+                                  ),
+                                  RadioListTile(
+                                    title: const Text('Tidak Yakin'),
+                                    value: 'Tidak Yakin',
+                                    groupValue: controller.selectedCF,
+                                    onChanged: (value) {
+                                      controller.selectedCF = value as RxString;
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
                           },
                           activeColor: Constant.primaryColor1,
                         ),
+                          ],
+                        )
                       );
                     },
                   ),
@@ -121,7 +156,6 @@ class DiagnosisView extends GetView<DiagnosisController> {
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
-         
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),

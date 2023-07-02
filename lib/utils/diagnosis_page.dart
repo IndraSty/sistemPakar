@@ -21,8 +21,8 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
   for (Rule rule in rules) {
     int matchingConditions = 0;
-    for (String condition in rule.kondisi!) {
-      if (gejalaDipilih.contains(condition)) {
+    for (Kondisi kondisi in rule.kondisi!) {
+      if (gejalaDipilih.contains(kondisi.gejala)) {
         matchingConditions++;
       }
     }

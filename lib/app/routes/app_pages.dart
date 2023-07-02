@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../utils/dialog/coba_coba.dart';
+import '../../utils/dialog/coba_part_ii.dart';
 import '../../utils/splash_screen.dart';
 import '../modules/daftar_penyakit/bindings/daftar_penyakit_binding.dart';
 import '../modules/daftar_penyakit/views/daftar_penyakit_view.dart';
@@ -48,6 +50,14 @@ class AppPages {
       name: _Paths.DAFTAR_PENYAKIT,
       page: () => const DaftarPenyakitView(),
       binding: DaftarPenyakitBinding(),
+    ),
+    GetPage(
+      name: _Paths.Coba,
+      page: () => const CobaCoba(),
+    ),
+    GetPage(
+      name: _Paths.CobaII,
+      page: () => const CobaPartII(),
     ),
   ];
 }

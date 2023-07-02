@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     // return GetMaterialApp(
     //   debugShowCheckedModeBanner: false,
     //   title: 'SistemPakar',
-    //   initialRoute: Routes.HOME,
+    //   initialRoute: Routes.CobaII,
     //   getPages: AppPages.routes,
     // );
     return FutureBuilder(

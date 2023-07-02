@@ -5,67 +5,69 @@ import '../../../data/rule.dart';
 
 class DiagnosisController extends GetxController {
   RxList<String> gejalaDipilih = <String>[].obs;
+  RxString selectedCF = RxString('');
   String hasilDiagnosis = "";
   double tingkatKemungkinan = 0;
 
   void diagnosis() {
-    double highestCF = 0;
-    String selectedDiagnosis = "";
+    double highestMatchPercentage = 0;
+    String DiagnosisCocok = "";
 
     for (Rule rule in rules) {
-      int matchingConditions = 0;
-      for (String condition in rule.kondisi!) {
-        if (gejalaDipilih.contains(condition)) {
-          matchingConditions++;
+      int kondisiCocok = 0;
+      for (Kondisi kondisi in rule.kondisi!) {
+        if (gejalaDipilih.contains(kondisi.gejala)) {
+          kondisiCocok++;
         }
       }
 
-       if (matchingConditions == rule.kondisi!.length) {
-      if (rule.cf! > highestCF) {
-        highestCF = rule.cf!;
-        selectedDiagnosis = rule.result!;
+      double persentaseKecocokan = kondisiCocok / rule.kondisi!.length;
+      if (persentaseKecocokan > highestMatchPercentage) {
+        highestMatchPercentage = persentaseKecocokan;
+        DiagnosisCocok = rule.result!;
       }
     }
-  }
-    
 
-    if (highestCF > 0) {
-      hasilDiagnosis = selectedDiagnosis;
+    if (highestMatchPercentage > 0) {
+      hasilDiagnosis = DiagnosisCocok;
     } else {
       hasilDiagnosis = "";
     }
-    tingkatKemungkinan = highestCF * 100;
+    tingkatKemungkinan = highestMatchPercentage * 100;
   }
+
+  
 }
 
 
 
-// String hasilDiagnosis = "";
-//   double tingkatKemungkinan = 0;
 
-//   void diagnosis() {
-//     double highestMatchPercentage = 0;
+
+// void diagnosis() {
+//     double highestCF = 0;
 //     String selectedDiagnosis = "";
 
 //     for (Rule rule in rules) {
 //       int matchingConditions = 0;
-//       for (String condition in rule.kondisi!) {
-//         if (gejalaDipilih.contains(condition)) {
+//       for (Kondisi kondisi in rule.kondisi!) {
+//         if (gejalaDipilih.contains(kondisi.gejala)) {
 //           matchingConditions++;
 //         }
 //       }
 
-//       double matchPercentage = matchingConditions / rule.kondisi!.length;
-//       if (matchPercentage > highestMatchPercentage) {
-//         highestMatchPercentage = matchPercentage;
+//        if (matchingConditions == rule.kondisi!.length) {
+//       if (rule.cf! > highestCF) {
+//         highestCF = rule.cf!;
 //         selectedDiagnosis = rule.result!;
 //       }
 //     }
+//   }
+    
 
-//     if (highestMatchPercentage > 0) {
+//     if (highestCF > 0) {
 //       hasilDiagnosis = selectedDiagnosis;
 //     } else {
 //       hasilDiagnosis = "";
 //     }
-//     tingkatKemungkinan = highestMatchPercentage * 100;
+//     tingkatKemungkinan = highestCF * 100;
 //   }

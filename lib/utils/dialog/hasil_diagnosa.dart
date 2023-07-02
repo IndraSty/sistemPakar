@@ -79,7 +79,7 @@ class CardDialog extends StatelessWidget {
                       "Berdasarkan Gejala yang anda pilih, anak anda mengalami ",
                 ),
                 TextSpan(
-                  text: '$diagnosis. dengan percentase $percentase',
+                  text: '$diagnosis. dengan nilai CF: $percentase',
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,

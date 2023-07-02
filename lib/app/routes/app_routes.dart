@@ -8,6 +8,8 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const PROFILE = _Paths.PROFILE;
   static const DIAGNOSIS = _Paths.DIAGNOSIS;
+  static const Coba = _Paths.Coba;
+  static const CobaII = _Paths.CobaII;
   static const DAFTAR_PENYAKIT = _Paths.DAFTAR_PENYAKIT;
 }
 
@@ -18,5 +20,7 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const PROFILE = '/profile';
   static const DIAGNOSIS = '/diagnosis';
+  static const Coba = '/coba';
+  static const CobaII = '/cobaii';
   static const DAFTAR_PENYAKIT = '/daftar-penyakit';
 }
