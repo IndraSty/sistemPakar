@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                 return Obx(
                   () => GetMaterialApp(
                     debugShowCheckedModeBanner: false,
-                    title: 'SistemPakar',
+                    title: 'pediatris',
                     theme: ThemeData(
                     ),
                     initialRoute:

@@ -111,7 +111,7 @@ class ProfileView extends GetView<ProfileController> {
                         authC.logout();
                       });
                     },
-                    onCancelPressed: () => Get.back(),
+                    onCancelPressed: () => {},
                   ),
                 );
               },

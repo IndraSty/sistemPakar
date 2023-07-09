@@ -113,51 +113,17 @@ class _DaftarPenyakitPageViewState extends State<DaftarPenyakitPageView>
             Expanded(
               child: TabBarView(
                 controller: tabController,
-                children: const [
-                  DiarePageView(),
+                children:  [
+                  const DiarePageView(),
                   AsmaPageView(),
-                  CacinganPageView(),
+                  const CacinganPageView(),
                 ],
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 84,
-        width: width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20)),
-         
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
-          child: GestureDetector(
-            onTap: () => Get.toNamed(Routes.DIAGNOSIS),
-            child: Container(
-              height: height,
-              width: width,
-              decoration: BoxDecoration(
-                gradient: Constant.gradientBtn,
-                borderRadius: BorderRadius.circular(10)
-              ),
-              child: Center(
-                child: Text(
-                  'Diagnosis',
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+    
     );
   }
 }

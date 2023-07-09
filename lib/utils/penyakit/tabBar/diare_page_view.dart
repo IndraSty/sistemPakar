@@ -11,7 +11,6 @@ class DiarePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Rule dataPenyakit2 = rules[0];
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -121,7 +120,7 @@ class DiarePageView extends StatelessWidget {
                         );
                       }),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,

@@ -26,7 +26,7 @@ class LoginView extends GetView<LoginController> {
             height: 30,
           ),
           Text(
-            'Pediatri',
+            'Pediatris',
             style: GoogleFonts.poppins(
               fontSize: 20,
               fontWeight: FontWeight.w600,
