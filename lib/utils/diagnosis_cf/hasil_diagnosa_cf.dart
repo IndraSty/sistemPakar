@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:sistempakar/utils/penyakit/daftar_penyakit_page.dart';
-
-import '../../app/modules/diagnosis/controllers/diagnosis_controller.dart';
-import '../../app/routes/app_pages.dart';
 import '../../constant.dart';
 
-class HasilDiagnosa extends StatelessWidget {
-  const HasilDiagnosa(
-      {super.key, required this.diagnosis, required this.percentase});
+class HasilDiagnosaCF extends StatelessWidget {
+  const HasilDiagnosaCF({
+    super.key,
+    required this.diagnosis,
+    required this.percentase,
+    required this.hasilCf,
+    required this.hasilDiag,
+  });
   final String diagnosis;
   final String percentase;
+  final String hasilCf;
+  final String hasilDiag;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,8 @@ class HasilDiagnosa extends StatelessWidget {
           CardDialog(
             diagnosis: diagnosis,
             percentase: percentase,
+            nilaiCF: hasilCf,
+            hasilDiag: hasilDiag,
           ),
         ],
       ),
@@ -34,10 +40,13 @@ class CardDialog extends StatelessWidget {
     super.key,
     required this.diagnosis,
     required this.percentase,
+    required this.nilaiCF,
+    required this.hasilDiag,
   });
   late String diagnosis;
   late String percentase;
-  final diagnosController = Get.find<DiagnosisController>();
+  late String nilaiCF;
+  late String hasilDiag;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +67,7 @@ class CardDialog extends StatelessWidget {
             height: 24,
           ),
           Text(
-            "Hasil Diagnosis",
+            "Hasil Diagnosa CF",
             style: GoogleFonts.montserrat(
                 fontSize: 16,
                 color: Constant.primaryColor1,
@@ -67,38 +76,89 @@ class CardDialog extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          RichText(
-            text: TextSpan(
-              style: GoogleFonts.poppins(
-                fontSize: 12,
-                color: Colors.black,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Berdasarkan Gejala yang anda pilih, anak anda mengalami: ",
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  color: Colors.black,
+                ),
               ),
-              children: <TextSpan>[
-                const TextSpan(
-                  text:
-                      "Berdasarkan Gejala yang anda pilih, anak anda mengalami ",
-                ),
-                TextSpan(
-                  text: '$diagnosis ',
+              const SizedBox(
+                height: 20,
+              ),
+              RichText(
+                text: TextSpan(
                   style: GoogleFonts.poppins(
                     fontSize: 12,
-                    fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
+                  children: <TextSpan>[
+                    const TextSpan(
+                      text: "Penyakit: ",
+                    ),
+                    TextSpan(
+                      text: diagnosis,
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
-                const TextSpan(
-                  text: 'dengan Persentase: ',
-                ),
-                TextSpan(
-                  text: percentase,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              RichText(
+                text: TextSpan(
                   style: GoogleFonts.poppins(
                     fontSize: 12,
-                    fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
+                  children: <TextSpan>[
+                    const TextSpan(
+                      text: "Nilai CF: ",
+                    ),
+                    TextSpan(
+                      text: nilaiCF,
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              RichText(
+                text: TextSpan(
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: Colors.black,
+                  ),
+                  children: <TextSpan>[
+                    const TextSpan(
+                      text: "Tingkat Kemungkinan: ",
+                    ),
+                    TextSpan(
+                      text: percentase,
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(
             height: 20,
@@ -110,7 +170,6 @@ class CardDialog extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-       
           const SizedBox(
             height: 30,
           ),
@@ -127,7 +186,7 @@ class CardDialog extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  diagnosController.hasilDiagnosis = '';
+                  hasilDiag = '';
                   Get.back();
                 },
                 child: const Text('Ulang'),

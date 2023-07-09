@@ -21,16 +21,16 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
   for (Rule rule in rules) {
     int matchingConditions = 0;
-    for (Kondisi kondisi in rule.kondisi!) {
+    for (Kondisi kondisi in rule.kondisi) {
       if (gejalaDipilih.contains(kondisi.gejala)) {
         matchingConditions++;
       }
     }
 
-    double matchPercentage = matchingConditions / rule.kondisi!.length;
+    double matchPercentage = matchingConditions / rule.kondisi.length;
     if (matchPercentage > highestMatchPercentage) {
       highestMatchPercentage = matchPercentage;
-      selectedDiagnosis = rule.result!;
+      selectedDiagnosis = rule.result;
     }
   }
 

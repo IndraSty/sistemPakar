@@ -17,7 +17,6 @@ class AuthController extends GetxController {
   UserCredential? _userCredential;
 
   var user = UsersModel().obs;
-  var rule = Rule().obs;
   var isAuth = false.obs;
 
   Stream<List<String>> getDataGejala() {

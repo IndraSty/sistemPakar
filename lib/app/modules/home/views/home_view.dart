@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sistempakar/app/modules/profile/views/profile_view.dart';
 import 'package:sistempakar/app/routes/app_pages.dart';
 
 import '../../../../constant.dart';
@@ -16,79 +17,124 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 15),
-            child: Image.asset('assets/images/logoHm.png'),
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.settings,
-                color: Colors.black54,
-                size: 25,
-              ),
-              onPressed: () => Get.toNamed(Routes.PROFILE),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-          ],
-          title: Text(
-            'SistemPakar',
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-          ),
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
         body: Column(
           children: [
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: size.height * 0.06,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Obx(
-                    () => Container(
-                      height: 57,
-                      width: 57,
-                      decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.white, width: 2),
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: NetworkImage(authC.user.value.img!),
-                            fit: BoxFit.cover),
+                  Row(
+                    children: [
+                      Container(
+                        height: 55,
+                        width: 55,
+                        padding: EdgeInsets.all(1),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.black, width: 1),
+                        ),
+                        child: Obx(
+                          () => Container(
+                            height: 51,
+                            width: 51,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  authC.user.value.img!,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hallo',
+                            style: GoogleFonts.poppins(
+                              color: Constant.fontColor,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Obx(
+                            () => Text(
+                              authC.user.value.name!,
+                              style: GoogleFonts.poppins(
+                                color: Constant.fontColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 38,
+                    width: 38,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.settings,
+                        size: 20,
+                        color: Color(0xff9B9B9B),
+                      ),
+                      onPressed: () {
+                        Get.toNamed(Routes.PROFILE);
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              width: size.width,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Kenali Gejala Sakit Anak',
+                    style: GoogleFonts.poppins(
+                      color: Constant.fontColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Obx(
-                    () => Text(
-                      'Hallo, ${authC.user.value.name!}',
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
+                  Text(
+                    'Sejak Dini!',
+                    style: GoogleFonts.poppins(
+                      color: Constant.fontColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -96,9 +142,9 @@ class HomeView extends GetView<HomeController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Kategori Pilihan',
+                    'Menu',
                     style: GoogleFonts.poppins(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -107,49 +153,62 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const DaftarPenyakitPageView(initialIndex: 0,))));
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const DaftarPenyakitPageView(
+                                initialIndex: 0,
+                              ))));
                 },
                 child: Container(
                   width: Get.width,
-                  height: Get.height * 0.2,
+                  height: 112,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                        image: AssetImage('assets/images/img-2.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  child: Container(
-                    height: Get.height,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.black.withOpacity(0.6)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Daftar Penyakit',
-                          style: GoogleFonts.poppins(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xff468D93)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset('assets/images/img_.png'),
+                      const SizedBox(width: 20,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Daftar Penyakit',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'Ayo kenali gejala penyakit anak',
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.white,
+                          Column(
+                            children: [
+                              Text(
+                                'Lihat daftar penyakit yang',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'mungkin  anak anda alami',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -159,43 +218,140 @@ class HomeView extends GetView<HomeController> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Diagnosa',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GestureDetector(
                 onTap: () => Get.toNamed(Routes.DIAGNOSIS),
                 child: Container(
                   width: Get.width,
-                  height: Get.height * 0.2,
+                  height: 74,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                        image: AssetImage('assets/images/img-1.jpg'),
-                        fit: BoxFit.cover),
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xffCCE0FF),
                   ),
-                  child: Container(
-                    height: Get.height,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.black.withOpacity(0.6)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Diagnosis',
-                          style: GoogleFonts.poppins(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 10,
                           ),
-                        ),
-                        Text(
-                          'Ayo kenali gejala penyakit anak',
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.white,
+                          Text(
+                            'Forward Chaining',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Constant.fontColor,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Diagnosa menggunakan metode',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  color: Constant.fontColor,
+                                ),
+                              ),
+                              Text(
+                                'Forward Chaining',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  color: Constant.fontColor,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      const Icon(
+                        Icons.arrow_right_alt_rounded,
+                        size: 30,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: GestureDetector(
+                onTap: () => Get.toNamed(Routes.CF),
+                child: Container(
+                  width: Get.width,
+                  height: 74,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xffBFFFC2),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Certainty Factor',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Constant.fontColor,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Diagnosa menggunakan metode',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  color: Constant.fontColor,
+                                ),
+                              ),
+                              Text(
+                                'Certainty Factor',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  color: Constant.fontColor,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      const Icon(
+                        Icons.arrow_right_alt_rounded,
+                        size: 30,
+                      )
+                    ],
                   ),
                 ),
               ),

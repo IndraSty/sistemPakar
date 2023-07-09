@@ -1,29 +1,29 @@
 class CFUser{
-  String? id;
-  String? cfuser;
-  double? cf;
+  String id;
+  String title;
+  double cf;
 
   CFUser({
-    this.id,
-    this.cfuser,
-    this.cf,
+    required this.id,
+    required this.title,
+    required this.cf,
   });
 }
 
-final List<CFUser> cfUser = [
+final List<CFUser> cfUsers = [
   CFUser(
     id: 'U1',
-    cfuser: 'Tidak Yakin',
+    title: 'Tidak Yakin',
     cf: 0.2,
   ),
   CFUser(
     id: 'U2',
-    cfuser: 'Ragu-ragu',
+    title: 'Ragu-ragu',
     cf: 0.5,
   ),
   CFUser(
     id: 'U3',
-    cfuser: 'Yakin',
+    title: 'Yakin',
     cf: 1
   )
 ];

@@ -12,27 +12,13 @@ class SplashScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Sistem',
-                style: GoogleFonts.poppins(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(width: 5,),
-              Text(
-                'Pakar',
-                style: GoogleFonts.poppins(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  color: Constant.primaryColor1,
-                ),
-              )
-            ],
+          child: Text(
+            'Pediatris',
+            style: GoogleFonts.poppins(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
+              color: Constant.primaryColor1,
+            ),
           ),
         ),
         backgroundColor: Colors.white,

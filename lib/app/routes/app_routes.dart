@@ -11,6 +11,7 @@ abstract class Routes {
   static const Coba = _Paths.Coba;
   static const CobaII = _Paths.CobaII;
   static const DAFTAR_PENYAKIT = _Paths.DAFTAR_PENYAKIT;
+  static const CF = _Paths.CF;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const Coba = '/coba';
   static const CobaII = '/cobaii';
   static const DAFTAR_PENYAKIT = '/daftar-penyakit';
+  static const CF = '/cf';
 }

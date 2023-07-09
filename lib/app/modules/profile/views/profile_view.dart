@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_alert_dialog/models/alert_dialog_text.dart';
+import 'package:smart_alert_dialog/smart_alert_dialog.dart';
 
 import '../../../../constant.dart';
 import '../../../../utils/dialog/alert_dialog_widget.dart';
@@ -52,24 +54,6 @@ class ProfileView extends GetView<ProfileController> {
                         image: NetworkImage(authC.user.value.img!),
                         fit: BoxFit.cover),
                   ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Constant.primaryColor2,
-                            border: Border.all(color: Colors.white, width: 2),
-                          ),
-                          child: Image.asset('assets/icons/edit.png'),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
             ),
@@ -77,26 +61,29 @@ class ProfileView extends GetView<ProfileController> {
               height: 30,
             ),
             Obx(
-              () => ContainItemProfile(
-                text: authC.user.value.name!,
+              () => ContainerItem(
                 icon: Icons.person,
+                text: authC.user.value.name!,
+                width: Get.width,
               ),
             ),
             const SizedBox(
               height: 20,
             ),
             Obx(
-              () => ContainItemProfile(
+              () => ContainerItem(
+                icon: Icons.mark_email_read_outlined,
                 text: authC.user.value.email!,
-                icon: Icons.email,
+                width: Get.width,
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-            const ContainItemProfile(
+            ContainerItem(
               text: 'Edit Profile',
               icon: Icons.settings,
+              width: Get.width,
             ),
             const SizedBox(
               height: 20,
@@ -105,82 +92,120 @@ class ProfileView extends GetView<ProfileController> {
               onTap: () {
                 showDialog(
                   context: context,
-                  builder: (context) => const AlertDialogWidget(),
+                  builder: (_) => SmartAlertDialog(
+                    title: "Logout",
+                    text: AlertDialogText(),
+                    message: "Yakin ingin Logout?",
+                    onConfirmPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const Center(
+                          child: CircularProgressIndicator(
+                            color: Constant.primaryColor2,
+                            backgroundColor: Colors.blueGrey,
+                          ),
+                        ),
+                      );
+                      Future.delayed(const Duration(seconds: 2), () {
+                        Navigator.of(context).pop();
+                        authC.logout();
+                      });
+                    },
+                    onCancelPressed: () => Get.back(),
+                  ),
                 );
               },
               child: Container(
-                height: 55,
+                height: 43,
                 width: Get.width,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: Constant.gradientLg,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.redAccent),
+                  color: Colors.white,
                 ),
-                child: Center(
-                  child: Text(
-                    'Logout',
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.logout_rounded,
+                      size: 16,
+                      color: Colors.redAccent,
                     ),
-                  ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: Get.width * 0.75,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Logout',
+                            style: GoogleFonts.poppins(
+                                color: Colors.redAccent,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             )
           ],
         ),
       ),
-      backgroundColor: const Color(0xffE8E7E7),
+      backgroundColor: const Color(0xffFAFAFA),
     );
   }
 }
 
-class ContainItemProfile extends StatelessWidget {
-  const ContainItemProfile({
+class ContainerItem extends StatelessWidget {
+  const ContainerItem({
     super.key,
+    required this.width,
     required this.text,
     required this.icon,
   });
 
+  final double width;
   final String text;
   final IconData icon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 55,
-      width: Get.width,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      height: 43,
+      width: width,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: 0,
-            blurRadius: 1.5,
-            offset: Offset(2, 2),
-          ),
-        ],
-      ),
+          borderRadius: BorderRadius.circular(5), color: Colors.white),
       child: Row(
         children: [
           Icon(
             icon,
-            color: Colors.black87,
+            size: 20,
+            color: Constant.primaryColor1,
           ),
           const SizedBox(
-            width: 20,
+            width: 10,
           ),
-          Text(
-            text,
-            style: GoogleFonts.poppins(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: Colors.black87,
+          Container(
+            width: width * 0.75,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  text,
+                  style: GoogleFonts.poppins(
+                      color: Constant.fontColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
-          ),
+          )
         ],
       ),
     );

@@ -9,59 +9,67 @@ class CobaPartII extends StatefulWidget {
 
 class _CobaPartIIState extends State<CobaPartII> {
   bool isChecked = false;
-  bool isExpanded = false;
-  int selectedOption = -1;
+  int? selectedValue;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Checkbox with Radio'),
+        title: const Text('Contoh Widget Flutter'),
       ),
-      body: ListView(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ExpansionTile(
-            title: const Text('Checkbox Item'),
-            trailing: Checkbox(
-              value: isChecked,
-              onChanged: (value) {
-                setState(() {
-                  isChecked = value!;
-                });
-              },
-            ),
-            children: [
-              Column(
-                children: [
-                  RadioListTile(
-                    title: const Text('Option 1'),
-                    value: 1,
-                    groupValue: selectedOption,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedOption = value as int;
-                      });
-                    },
-                  ),
-                  RadioListTile(
-                    title: const Text('Option 2'),
-                    value: 2,
-                    groupValue: selectedOption,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedOption = value as int;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ],
-            onExpansionChanged: (value) {
+          Checkbox(
+            value: isChecked,
+            onChanged: (value) {
               setState(() {
-                isExpanded = value;
+                isChecked = value!;
+                if (!isChecked) {
+                  selectedValue = null;
+                }
               });
             },
           ),
+          if (isChecked)
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Radio<int>(
+                      value: 1,
+                      groupValue: selectedValue,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedValue = value;
+                        });
+                      },
+                    ),
+                    const Text('Tidak Yakin'),
+                    Radio<int>(
+                      value: 2,
+                      groupValue: selectedValue,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedValue = value;
+                        });
+                      },
+                    ),
+                    const Text('Ragu-ragu'),
+                    Radio<int>(
+                      value: 3,
+                      groupValue: selectedValue,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedValue = value;
+                        });
+                      },
+                    ),
+                    const Text('Yakin'),
+                  ],
+                ),
+              ],
+            ),
         ],
       ),
     );

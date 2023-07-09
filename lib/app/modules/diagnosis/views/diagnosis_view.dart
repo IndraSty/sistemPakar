@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../constant.dart';
@@ -77,64 +78,44 @@ class DiagnosisView extends GetView<DiagnosisController> {
                         () => Column(
                           children: [
                             CheckboxListTile(
-                          title: Text(gejala[index]),
-                          value:
-                              controller.gejalaDipilih.contains(gejala[index]),
-                          onChanged: (value) {
-                            if (value!) {
-                              if (controller.gejalaDipilih.value.length <= 6) {
-                                controller.gejalaDipilih.add(gejala[index]);
-                              }
-                              if (controller.gejalaDipilih.value.length > 6) {
-                                Fluttertoast.showToast(
-                                  msg:
-                                      'Anda tidak dapat memilih lebih dari 7 gejala',
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 3,
-                                  backgroundColor: Colors.black54,
-                                  textColor: Colors.white,
-                                  fontSize: 12,
-                                );
-                              }
-                            } else {
-                              controller.gejalaDipilih.remove(gejala[index]);
-                            }
-                            if (controller.gejalaDipilih.value.isNotEmpty) {
-                              Column(
-                                children: [
-                                  RadioListTile(
-                                    title: const Text('Yakin'),
-                                    value: 'Yakin',
-                                    groupValue: controller.selectedCF,
-                                    onChanged: (value) {
-                                      controller.selectedCF = value as RxString;
-                                    },
-                                  ),
-                                  RadioListTile(
-                                    title: const Text('Ragu-ragu'),
-                                    value: 'Ragu-ragu',
-                                    groupValue: controller.selectedCF,
-                                    onChanged: (value) {
-                                      controller.selectedCF = value as RxString;
-                                    },
-                                  ),
-                                  RadioListTile(
-                                    title: const Text('Tidak Yakin'),
-                                    value: 'Tidak Yakin',
-                                    groupValue: controller.selectedCF,
-                                    onChanged: (value) {
-                                      controller.selectedCF = value as RxString;
-                                    },
-                                  ),
-                                ],
-                              );
-                            }
-                          },
-                          activeColor: Constant.primaryColor1,
-                        ),
+                              title: Text(
+                                gejala[index],
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                              value: controller.gejalaDipilih
+                                  .contains(gejala[index]),
+                              onChanged: (value) {
+                                if (value!) {
+                                  if (controller.gejalaDipilih.length <= 6) {
+                                    controller.gejalaDipilih.add(gejala[index]);
+                                  }
+
+                                  if (controller.gejalaDipilih.length > 6) {
+                                    Fluttertoast.showToast(
+                                      msg:
+                                          'Anda tidak dapat memilih lebih dari 7 gejala',
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 3,
+                                      backgroundColor: Colors.black54,
+                                      textColor: Colors.white,
+                                      fontSize: 12,
+                                    );
+                                  }
+                                } else {
+                                  controller.gejalaDipilih
+                                      .remove(gejala[index]);
+                                }
+                              },
+                              activeColor: Constant.primaryColor1,
+                            ),
+                           
                           ],
-                        )
+                        ),
                       );
                     },
                   ),
@@ -144,6 +125,7 @@ class DiagnosisView extends GetView<DiagnosisController> {
               }
             },
           ),
+
           //
           const SizedBox(height: 16),
         ],
@@ -161,7 +143,7 @@ class DiagnosisView extends GetView<DiagnosisController> {
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
           child: GestureDetector(
             onTap: () => {
-              if (controller.gejalaDipilih.value.isNotEmpty)
+              if (controller.gejalaDipilih.isNotEmpty)
                 {
                   showDialog(
                     context: context,
@@ -181,7 +163,7 @@ class DiagnosisView extends GetView<DiagnosisController> {
                         builder: (context) => HasilDiagnosa(
                           diagnosis: controller.hasilDiagnosis,
                           percentase:
-                              '${controller.tingkatKemungkinan.toStringAsFixed(2)}%',
+                              '${controller.tingkatKemungkinan.toStringAsFixed(1)}%',
                         ),
                       );
                     } else {

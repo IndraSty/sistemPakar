@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../utils/diagnosis_cf/cf_diagnosis_view.dart';
 import '../../utils/dialog/coba_coba.dart';
 import '../../utils/dialog/coba_part_ii.dart';
 import '../../utils/splash_screen.dart';
+import '../modules/cf/bindings/cf_binding.dart';
+import '../modules/cf/views/cf_view.dart';
 import '../modules/daftar_penyakit/bindings/daftar_penyakit_binding.dart';
 import '../modules/daftar_penyakit/views/daftar_penyakit_view.dart';
 import '../modules/diagnosis/bindings/diagnosis_binding.dart';
@@ -58,6 +61,10 @@ class AppPages {
     GetPage(
       name: _Paths.CobaII,
       page: () => const CobaPartII(),
+    ),
+    GetPage(
+      name: _Paths.CF,
+      page: () => const CFDiagnosisView(),
     ),
   ];
 }

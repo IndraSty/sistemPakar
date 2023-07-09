@@ -21,5 +21,6 @@ class Constant {
   static const botNavIc = Color(0xffAEAEAE);
   static const boxTrans1 = Color(0xffEFEFEF);
   static const boxTrans2 = Color(0xff504E4E);
+   static const fontColor = Color(0xff181818);
   static const bodyColor = Color(0xffF1F1F1);
 }

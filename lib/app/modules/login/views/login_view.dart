@@ -25,21 +25,13 @@ class LoginView extends GetView<LoginController> {
           const SizedBox(
             height: 30,
           ),
-          RichText(
-            text: TextSpan(
-                style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-                children: const <TextSpan>[
-                  TextSpan(
-                    text: "Sistem",
-                  ),
-                  TextSpan(
-                      text: "Pakar",
-                      style: TextStyle(color: Constant.primaryColor1))
-                ]),
+          Text(
+            'Pediatri',
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Constant.primaryColor1,
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -58,7 +50,7 @@ class LoginView extends GetView<LoginController> {
             ),
           ),
           const SizedBox(
-            height: 50,
+            height: 80,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
